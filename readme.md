@@ -22,8 +22,11 @@ reboot
 ## installation
 
 cp compiled exe files to `/sbin/`
+
 cp `oled-monitor-serviced.service` to `/usr/lib/systemd/system`
+
 config service:
+
     systemctl daemon-reload
     systemctl enable oled-monitor-serviced.service
     systemctl start oled-monitor-serviced.service

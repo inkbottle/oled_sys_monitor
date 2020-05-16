@@ -1,0 +1,12 @@
+[Unit]
+Description=oled to display cpu status
+  
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/sbin/oled_monitor
+ExecStop=/sbin/oled_cleaner
+  
+[Install]
+WantedBy=multi-user.target

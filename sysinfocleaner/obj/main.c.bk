@@ -1,0 +1,67 @@
+/*****************************************************************************
+* | File      	:	main.c
+* | Author      :   Waveshare team
+* | Function    :	0.9inch OLED Moudle Demo
+* | Info        :	
+*----------------
+* |	This version:   V1.0
+* | Date        :   2018-04-17
+* | Info        :   Basic version
+******************************************************************************/
+#include <stdio.h>		//printf()
+#include <stdlib.h>		//exit()
+#include <time.h>
+
+#include "OLED_Config.h"
+#include "OLED_Driver.h"
+#include "OLED_GUI.h"
+#include "Show_Lib.h"
+
+int main(void)
+{	
+	//1.System Initialization
+	if(System_Init())
+		exit(0);
+	
+	//2.show	
+	OLED_Init();
+	
+	GUI_Init(OLED_WIDTH, OLED_HEIGHT);
+	GUI_Clear();
+	
+	GUI_DrawPoint(10, 7, WHITE, DOT_PIXEL_2X2, DOT_FILL_AROUND);
+	GUI_DrawPoint(10, 13, WHITE, DOT_PIXEL_3X3, DOT_FILL_AROUND);
+	
+	GUI_DrawPoint(10, 20, WHITE, DOT_PIXEL_2X2, DOT_FILL_RIGHTUP);
+	GUI_DrawPoint(10, 25, WHITE, DOT_PIXEL_3X3, DOT_FILL_RIGHTUP);
+	
+	GUI_DrawLine(0, 0, 127, 0, WHITE, LINE_SOLID, DOT_PIXEL_DFT);
+	GUI_DrawLine(0, 31, 127, 31, WHITE, LINE_SOLID, DOT_PIXEL_DFT);
+	
+	GUI_DrawLine(0, 0, 0, 31, WHITE, LINE_DOTTED, DOT_PIXEL_DFT);
+	GUI_DrawLine(127, 0, 127, 31, WHITE, LINE_DOTTED, DOT_PIXEL_DFT);
+	
+	GUI_DrawRectangle(20, 10, 50, 25, WHITE, DRAW_EMPTY, DOT_PIXEL_DFT);
+	GUI_DrawRectangle(60, 10, 90, 25, WHITE, DRAW_FULL, DOT_PIXEL_DFT);
+	
+	GUI_DrawCircle(100, 20, 5, WHITE, DRAW_EMPTY, DOT_PIXEL_DFT);
+	GUI_DrawCircle(115, 20, 5, WHITE, DRAW_FULL, DOT_PIXEL_DFT);
+	
+	GUI_Display();
+	Driver_Delay_ms(1000);
+	
+	GUI_Clear();
+	GUI_DisString_EN(0 , 0, "Welcome to use 0.91inch oled", &Font12, FONT_BACKGROUND, WHITE);
+	GUI_Display();
+	Driver_Delay_ms(1000);
+	
+	GUI_Clear();
+	GUI_Disbitmap(Image_Time);
+	GUI_Display();
+	
+	//3.System Exit
+	System_Exit();
+	return 0;
+	
+}
+
